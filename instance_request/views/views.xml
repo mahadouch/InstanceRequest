@@ -1,0 +1,123 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+
+    <record model="ir.ui.view" id="instance_request_search">
+      <field name="name">search</field>
+      <field name="model">instance.request</field>
+      <field name="arch" type="xml">
+        <search>
+          <field name="NAME"/>
+          <field name="IP"/>
+          <field name="CPU"/>
+          <field name="RAM"/>
+          <field name="DISK"/>
+          <field name="URL"/>
+          <field name="ACTIVE"/>
+          <field name="STATE"/>
+          <field name="LIMIT_DATE"/>
+          <field name="TRAITEMENT_DATE"/>
+          <field name="TRAITEMENT_DURATION"/>
+        </search>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="instance_request_list">
+      <field name="name">list</field>
+      <field name="model">instance.request</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="NAME"/>
+          <field name="IP"/>
+          <field name="CPU"/>
+          <field name="RAM"/>
+          <field name="DISK"/>
+          <field name="URL"/>
+          <field name="ACTIVE"/>
+          <field name="STATE"/>
+          <field name="LIMIT_DATE"/>
+          <field name="TRAITEMENT_DATE"/>
+          <field name="TRAITEMENT_DURATION"/>
+          <button name="action_brouillon" type="object" string="Brouillon" />
+             <button name="action_soumise" type="object" string="Soumise"/>
+             <button name="action_en_traitement" type="object" string="En traitement"/>
+             <button name="action_traiter" type="object" string="Traité"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="instance_request_form">
+      <field name="name">creation d'instance</field>
+      <field name="model">instance.request</field>
+      <field name="arch" type="xml">
+        <form string="Instance request">
+           <header>
+             <button name="action_brouillon" type="object" string="Brouillon" />
+             <button name="action_soumise" type="object" string="Soumise"/>
+             <button name="action_en_traitement" type="object" string="En traitement"/>
+             <button name="action_traiter" type="object" string="Traité"/>
+             <field name="STATE" widget="statusbar" options="{'clickable':'1'}"/>
+           </header>
+          <sheet>
+            <group>
+              <group> <field name="NAME"/></group>
+              <group> <field name="IP"/></group>
+              <group> <field name="CPU"/></group>
+              <group> <field name="RAM"/></group>
+              <group> <field name="DISK"/></group>
+              <group> <field name="URL"/></group>
+              <group> <field name="ACTIVE"/></group>
+              <group> <field name="STATE"/></group>
+              <group> <field name="LIMIT_DATE"/></group>
+              <group> <field name="TRAITEMENT_DATE"/></group>
+              <group> <field name="TRAITEMENT_DURATION"/></group>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+
+    <!-- actions opening views on models -->
+
+    <record model="ir.actions.act_window" id="instance_request.action">
+      <field name="name">Demande de creation</field>
+      <field name="res_model">instance.request</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <!-- server action to the one above -->
+<!--
+    <record model="ir.actions.server" id="instance_request.action_server">
+      <field name="name">instance_request server</field>
+      <field name="model_id" ref="model_instance_request_instance_request"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+
+    <!-- Top menu item -->
+
+    <menuitem name="instance_request" id="instance_request.menu_root" action="instance_request.action"/>
+
+    <!-- menu categories -->
+<!--
+    <menuitem name="Menu 1" id="instance_request.menu_1" parent="instance_request.menu_root"/>
+    <menuitem name="Menu 2" id="instance_request.menu_2" parent="instance_request.menu_root"/>
+-->
+    <!-- actions -->
+<!--
+    <menuitem name="List" id="instance_request.menu_1_list" parent="instance_request.menu_1"
+              action="instance_request.action_window"/>
+    <menuitem name="Server to list" id="instance_request" parent="instance_request.menu_2"
+              action="instance_request.action_server"/>
+-->
+  </data>
+</odoo>
